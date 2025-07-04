@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Get My Location</title>
+</head>
+<body>
+  <h2>Your Location</h2>
+  <p id="status">Getting location...</p>
+  <p><strong>Latitude:</strong> <span id="lat"></span></p>
+  <p><strong>Longitude:</strong> <span id="lon"></span></p>
+
+  <script>
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        document.getElementById("lat").textContent = position.coords.latitude;
+        document.getElementById("lon").textContent = position.coords.longitude;
+        document.getElementById("status").textContent = "Location received.";
+      }, function(error) {
+        document.getElementById("status").textContent = "Error: " + error.message;
+      });
+    } else {
+      document.getElementById("status").textContent = "Geolocation is not supported.";
+    }
+  </script>
+</body>
+</html>
